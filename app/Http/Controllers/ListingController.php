@@ -36,12 +36,18 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         // Listing::create($request->all());
-        Listing::create([
-            ...$request->all(),
-            ...$request->validate([
+        Listing::create(
+            $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
+                'baths' => 'required|integer|min:0|max:20',
+                'area' => 'required|integer|min:15|max:1500',
+                'city' => 'required',
+                'code' => 'required',
+                'street' => 'required',
+                'street_nr' => 'required|min:1|max:1000',
+                'price' => 'required|integer|min:1'
             ])
-        ]);
+        );
         return redirect()->route('listing.index')
             ->with('success', 'Listing created successfully.');
     }
@@ -67,7 +73,12 @@ class ListingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return inertia(
+            'Listing/Edit',
+            [
+                'listings' => Listing::all()
+            ]
+        );
     }
 
     /**
