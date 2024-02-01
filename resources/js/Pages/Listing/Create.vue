@@ -72,7 +72,10 @@
         price: 0,
     })
 
-    const create = () => form.post('/listing', form)
+    // const create = () => form.post('/listing', form)
+
+    //using ziggy route helper instead of the hard coded path
+    const create = () => form.post(route('listing.store'))
 </script>
 
   <style scoped>
