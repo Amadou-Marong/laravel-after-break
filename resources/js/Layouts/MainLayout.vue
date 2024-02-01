@@ -2,17 +2,18 @@
     <header class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 w-full">
         <div class="container mx-auto">
             <nav class="p-4 flex items-center justify-between">
-                <div class="text-lg font-medium">
-                    <Link :href="route('listing.index')">Listings</Link>
-                </div>
+                
                 <div class="text-xl text-green-600 dark:text-green-300 font-bold text-center">
                     <!-- <Link :href="route('listing.index')">GNPC</Link> -->
                     <Link :href="route('listing.index')">
-                        GNPC
+                        <img class="w-16" src="/resources/assets/images/logo.jpg" alt="">
                     </Link>
                 </div>
+                <div class="text-lg font-medium">
+                    <Link class="dark:text-white font-bold" :href="route('listing.index')">Listings</Link>
+                </div>
                 <div>
-                    <Link :href="route('listing.create')" class="bg-green-600 hover:bg-green-500 p-2 rounded-md">+ New Listing</Link>
+                    <Link :href="route('listing.create')" class="bg-green-600 hover:bg-green-500 p-2 rounded-md text-white text-pretty">+ New Listing</Link>
                 </div>
             </nav>
         </div>
@@ -20,7 +21,7 @@
     </header>
 
     <main>
-        <div class="container mx-auto">
+        <div class="container mx-auto p-4">
             <div v-if="flashSuccess" class="alert alert-success">
                 {{flashSuccess}}  
             </div>
@@ -29,7 +30,7 @@
     </main>
 
     <footer class="p-20">
-        <p>copyright &copy; 2024 by Ahmad</p>
+        <p>copyright &copy; 2024 by Ahmad @ GNPC</p>
     </footer>
 </template>
 
@@ -54,7 +55,7 @@ const flashSuccess = computed(() => page.props.flash.success);
 </script>
 
 <style scoped>
-  /*  header {
+  /* header {
         background-color: #ccc;
         padding: 10px;
     }
