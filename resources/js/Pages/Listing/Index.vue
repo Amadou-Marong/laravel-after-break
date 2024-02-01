@@ -10,11 +10,6 @@
             <Link :href="`/listing/${listing.id}/edit`">Edit</Link>
         </div>
         <div>
-            <!-- <form :action="`/listing/${listing.id}`" method="post">
-                @csrf
-                @method('delete')
-                <button type="submit">Delete</button>
-            </form> -->
             <Link :href="`/listing/${listing.id}`" method="DELETE">Delete</Link>
         </div>
     </div>
