@@ -4,13 +4,12 @@
             <nav class="p-4 flex items-center justify-between">
                 
                 <div class="text-xl text-green-600 dark:text-green-300 font-bold text-center">
-                    <!-- <Link :href="route('listing.index')">GNPC</Link> -->
                     <Link :href="route('listing.index')">
                         <img class="w-16" src="/resources/assets/images/logo.jpg" alt="">
                     </Link>
                 </div>
                 <div class="text-lg font-medium">
-                    <Link class="dark:text-white font-bold" :href="route('listing.index')">Listings</Link>
+                    <Link class="dark:text-white font-bold text-green-600" :href="route('listing.index')">Listings</Link>
                 </div>
                 <div>
                     <Link :href="route('listing.create')" class="bg-green-600 hover:bg-green-500 p-2 rounded-md text-white text-pretty">+ New Listing</Link>
