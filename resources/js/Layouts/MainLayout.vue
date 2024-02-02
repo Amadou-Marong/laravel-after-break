@@ -12,7 +12,7 @@
                     <Link class="dark:text-white font-bold text-green-600" :href="route('listing.index')">Listings</Link>
                 </div>
                 <div>
-                    <Link :href="route('listing.create')" class="bg-green-600 hover:bg-green-500 p-2 rounded-md text-white text-pretty">+ New Listing</Link>
+                    <Link :href="route('listing.create')" class="btn-primary">+ New Listing</Link>
                 </div>
             </nav>
         </div>
@@ -64,9 +64,13 @@ const flashSuccess = computed(() => page.props.flash.success);
     }*/
     .alert {
         padding: 10px;
+        margin-bottom: 12px;
+        border-radius: 4px;
     }
     .alert-success {
         background-color: #28a745;
         color: #fff;
+        font-weight: bold;
+        text-align: center;
     }
 </style>

@@ -16,6 +16,7 @@
             </div>
         </Box>
     </div>
+  
 </template>
 
 <script setup>
@@ -24,7 +25,8 @@
     import ListingAddress from '@/Components/ListingAddress.vue';
     import Box from '@/Components/UI/Box.vue';
     import Price from '@/Components/Price.vue';
-    
+    import Pagination from '@/Components/UI/Pagination.vue';
+
     defineProps({
         listings: Array,
     })
