@@ -4,19 +4,19 @@
         <div class="col-span-2">
           <label class="label">Beds</label>
           <input class="input" type="text" v-model.number="form.beds"/>
-          <div v-if="form.errors.beds">{{form.errors.beds}}</div>
+          <div class="input-error" v-if="form.errors.beds">{{form.errors.beds}}</div>
         </div>
   
         <div class="col-span-2">
           <label class="label">Baths</label>
           <input class="input" type="text" v-model.number="form.baths"/>
-          <div v-if="form.errors.baths">{{form.errors.baths}}</div>
+          <div class="input-error" v-if="form.errors.baths">{{form.errors.baths}}</div>
         </div>
   
         <div class="col-span-2">
           <label class="label">Area</label>
           <input class="input" type="text" v-model.number="form.area"/>
-          <div v-if="form.errors.area">{{form.errors.area}}</div>
+          <div class="input-error" v-if="form.errors.area">{{form.errors.area}}</div>
         </div>
   
         <div class="col-span-4">
