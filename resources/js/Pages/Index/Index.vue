@@ -1,5 +1,6 @@
 <template>
-    <h1>Index Page</h1>    
+    <h1>Index Page</h1>   
+    <p>Message is: {{message}}</p> 
 </template>
 <script setup>
 

@@ -20,7 +20,7 @@
     </header>
 
     <main>
-        <div class="container mx-auto p-4">
+        <div class="container mx-auto p-4 w-full">
             <div v-if="flashSuccess" class="alert alert-success">
                 {{flashSuccess}}  
             </div>
