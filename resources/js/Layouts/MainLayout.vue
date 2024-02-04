@@ -11,8 +11,16 @@
                 <div class="text-lg font-medium">
                     <Link class="dark:text-white font-bold text-green-600" :href="route('listing.index')">Listings</Link>
                 </div>
-                <div>
+                <div v-if="user" class="flex items-center gap-4">
+                    <div class="text-sm text-gray-500">{{user.name}}</div>
                     <Link :href="route('listing.create')" class="btn-primary">+ New Listing</Link>
+                    <div>
+                        <Link :href="route('logout')" method="delete" as="button">Logout</Link>
+                    </div>
+                </div>
+                <div v-else>
+                    <Link :href="route('login')">Sign In</Link>
+                    <!-- <Link :href="route('register')" class="btn-primary">Register</Link> -->
                 </div>
             </nav>
         </div>
@@ -42,6 +50,7 @@ const page = usePage();
 
 // I used this instead of the above flash alert line
 const flashSuccess = computed(() => page.props.flash.success);
+const user = computed(() => page.props.auth.user);
 
 // import { ref } from 'vue';
 

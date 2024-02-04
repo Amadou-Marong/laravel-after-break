@@ -10,14 +10,53 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // we instead define the filters as a variable and pass it to the inertia view
+        $filters = $request->only([
+            'minPrice', 'maxPrice', 'beds', 'baths', 'minArea', 'maxArea'
+        ]);
+        //
+        $query = Listing::orderByDesc('created_at');
+
+        if ($filters['minPrice'] ?? false) {
+            $query->where('price', '>=', $filters['minPrice']);
+        }
+        
+        if ($filters['maxPrice'] ?? false) {
+            $query->where('price', '<=', $filters['maxPrice']);
+        }
+        
+        if ($filters['beds'] ?? false) {
+            $query->where('beds', $filters['beds']);
+        }
+        
+        if ($filters['baths'] ?? false) {
+            $query->where('baths', $filters['baths']);
+        }
+        
+        if ($filters['minArea'] ?? false) {
+            $query->where('area','>=', $filters['minArea']);
+        }
+        
+        if ($filters['maxArea'] ?? false) {
+            $query->where('area','<=', $filters['maxArea']);
+        }
+        
+
+
         return inertia(
             'Listing/Index',
             [
+                // 'filters' => request()->only([
+                //     'minPrice', 'maxPrice', 'beds', 'baths', 'minArea', 'maxArea'
+                // ]),
+                'filters' => $filters,
                 // 'listings' => Listing::all()
-                'listings' => Listing::orderBy('created_at')
-                    ->paginate(9)
+                // 'listings' => Listing::orderBy('created_at')
+                //     ->paginate(9)
+                'listings' => $query->paginate(9)
+                    ->withQueryString()
             ]
         );
     }

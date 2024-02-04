@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/hello', [IndexController::class, 'show']);
+Route::get('/hello', [IndexController::class, 'show'])->middleware('auth');
 
 // If we want to only include some routes only, we can use only():
 // Route::resource('listing', ListingController::class)->only(['index', 'show', 'create', 'store']);
