@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    // since this is a resource controller we can use the authorizeResource method to authorize the resource
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +50,13 @@ class ListingController extends Controller
             $query->where('area','<=', $filters['maxArea']);
         }
         
+        ///////
+        // if ($filters['name'] ?? false) {
+        //     $query->where('name', 'like', '%' . $filters['name'] . '%');
+        // }
 
+
+        ////////
 
         return inertia(
             'Listing/Index',
@@ -77,7 +90,7 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         // Listing::create($request->all());
-        Listing::create(
+        $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
                 'baths' => 'required|integer|min:0|max:20',
@@ -94,11 +107,24 @@ class ListingController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resourc
+     * e.
      */
     // public function show(string $id)
     public function show(Listing $listing)
     {
+        // since i'm implementing a policy for whether a user can view a listing
+        // Auth::user()->can('view', $listing);
+
+        // we check to see if the user cannot view a listing then we do something
+       /*if (Auth::user()->cannot('view', $listing)) {
+            abort(403);
+        }*/
+
+        // another way is to use the authorize method from the controller it would do thesame as the above 
+        // it would check if the current user is authorized to perform this view operation on this lisiting if not it woud return 403 error 
+
+        // $this->authorize('view', $listing);
 
         return inertia(
             'Listing/Show',

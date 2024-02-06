@@ -1,5 +1,5 @@
 <template>
-    <Box>
+    <Box class="box">
         <div>
             <Link :href="route('listing.show', {listing: listing.id})">
                 <div class="flex items-center gap-1">
@@ -39,3 +39,14 @@
     const {monthlyPayment} = useMonthlyPayment(props.listing.price, 2.5, 15);
   
 </script>
+
+<style scoped>
+.box{
+    background-image: url('/resources/assets/images/gnpcimage1.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 0.1;
+    opacity: 0.7;
+   
+}
+</style>

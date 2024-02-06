@@ -77,7 +77,7 @@ const user = computed(() => page.props.auth.user);
         border-radius: 4px;
     }
     .alert-success {
-        background-color: #28a745;
+        background-color: #a4dfb2;
         color: #fff;
         font-weight: bold;
         text-align: center;
