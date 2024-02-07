@@ -8,6 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
+    function before(?User $user, $ability)
+    {
+        if ($user?->is_admin) {
+            return true;
+        }
+        // if ($user->is_admin && $ability !== 'delete') {
+        //     return true;
+        // }
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -40,9 +49,7 @@ class ListingPolicy
     {
     //    return true;
     // this is for only the user who created the listing
-        return $user->id === $listing->by_user_id
-            ? Response::allow()
-            : Response::deny('You do not own this listing.');
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -50,9 +57,7 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing): bool
     {
-        return $user->id === $listing->by_user_id
-            ? Response::allow()
-            : Response::deny('You do not own this listing.');
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -60,9 +65,7 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing): bool
     {
-        return $user->id === $listing->by_user_id
-            ? Response::allow()
-            : Response::deny('You do not own this listing.');
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -70,6 +73,6 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing): bool
     {
-        return true;
+        return $user->id === $listing->by_user_id;
     }
 }

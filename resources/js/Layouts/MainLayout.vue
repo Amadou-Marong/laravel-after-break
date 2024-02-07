@@ -1,5 +1,5 @@
 <template>
-    <header class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 w-full">
+    <header class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 w-full shadow-md">
         <div class="container mx-auto">
             <nav class="p-4 flex items-center justify-between">
                 
@@ -23,6 +23,11 @@
                     <Link :href="route('login')">Sign In</Link>
                 </div> -->
             </nav>
+            <hr class="bg-red-600 w-full h-2">
+            <hr class="bg-white w-full h-1">
+            <hr class="bg-blue-600 w-full h-2">
+            <hr class="bg-white w-full h-1">
+            <hr class="bg-green-600 w-full h-2">
         </div>
         
     </header>
