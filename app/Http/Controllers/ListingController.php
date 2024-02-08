@@ -17,7 +17,7 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+  /*  public function index(Request $request)
     {
         // we instead define the filters as a variable and pass it to the inertia view
         $filters = $request->only([
@@ -72,7 +72,65 @@ class ListingController extends Controller
                     ->withQueryString()
             ]
         );
-    }
+    }*/
+
+  /*  public function index(Request $request)
+    {
+           $filters = $request->only([
+                'minPrice', 'maxPrice', 'beds', 'baths', 'minArea', 'maxArea'
+           ]);
+           $query = Listing::orderByDesc('created_at')
+                ->when(
+                    $filters['minPrice'] ?? false,
+                    fn($query, $value) => $query->where('price', '>=', $value)
+                )
+                ->when(
+                    $filters['maxPrice'] ?? false,
+                    fn($query, $value) => $query->where('price', '<=', $value)
+                )
+                ->when(
+                    $filters['beds'] ?? false,
+                    fn($query, $value) => $query->where('beds', $value)
+                )
+                ->when(
+                    $filters['baths'] ?? false,
+                    fn($query, $value) => $query->where('baths', $value)
+                )
+                ->when(
+                    $filters['minArea'] ?? false,
+                    fn($query, $value) => $query->where('area', '>=', $value)
+                )
+                ->when(
+                    $filters['maxArea'] ?? false,
+                    fn($query, $value) => $query->where('area', '<=', $value)
+                );
+        return inertia(
+            'Listing/Index',
+            [
+                'filters' => $filters,
+                'listings' => $query->paginate(9)
+                    ->withQueryString()
+            ]
+        );
+
+    }*/
+
+    public function index(Request $request)
+    {
+        $filters = $request->only([
+            'minPrice', 'maxPrice', 'beds', 'baths', 'minArea', 'maxArea'
+        ]);
+        return inertia(
+            'Listing/Index',
+            [
+                'filters' => $filters,
+                'listings' => Listing::mostRecent()
+                    ->filter($filters)
+                    ->paginate(9)
+                    ->withQueryString()
+            ]
+        );
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -175,10 +233,10 @@ class ListingController extends Controller
      * Remove the specified resource from storage.
      */
     // public function destroy(string $id)
-    public function destroy(Listing $listing)
-    {
-        $listing->delete();
-        return redirect()->route('listing.index')
-            ->with('success', 'Listing deleted successfully.');
-    }
+    // public function destroy(Listing $listing)
+    // {
+    //     $listing->delete();
+    //     return redirect()->route('listing.index')
+    //         ->with('success', 'Listing deleted successfully.');
+    // }
 }

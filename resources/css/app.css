@@ -28,6 +28,10 @@
     .input-filter-l{
         @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border-gray-200 dark:border-gray-700 rounded-t-md rounded-b-md rounded-l-none rounded-r-md text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800
     }
+
+    .btn-outline {
+        @apply p-2 rounded-md border shadow-md border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800
+    }
         
 
 
