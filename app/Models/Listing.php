@@ -50,6 +50,9 @@ class Listing extends Model
         )->when(
             $filters['maxArea'] ?? false,
             fn($query, $value) => $query->where('area', '<=', $value)
+        )->when(
+            $filters['deleted'] ?? false,
+            fn($query, $value) => $query->withTrashed()
         );
     }
 }

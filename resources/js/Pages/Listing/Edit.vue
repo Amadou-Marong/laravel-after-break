@@ -2,13 +2,13 @@
     <form @submit.prevent="update">
       <div class="grid grid-cols-6 gap-4">
         <div class="col-span-2">
-          <label class="label">Beds</label>
+          <label class="label">Bedrooms</label>
           <input class="input" type="text" v-model.number="form.beds"/>
           <span class="input-error" v-if="form.errors.beds">{{form.errors.beds}}</span>
         </div>
   
         <div class="col-span-2">
-          <label class="label">Baths</label>
+          <label class="label">Bathrooms</label>
           <input class="input" type="text" v-model.number="form.baths"/>
           <span class="input-error" v-if="form.errors.baths">{{form.errors.baths}}</span>
         </div>
