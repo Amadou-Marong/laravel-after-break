@@ -24,8 +24,6 @@
         deleted: false,
     })
     
-    
-
     watch(
         filterForm, debounce(() =>  Inertia.get(
             route('realtor.listing.index'),

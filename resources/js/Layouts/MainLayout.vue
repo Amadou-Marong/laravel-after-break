@@ -14,7 +14,7 @@
                 <div v-if="user" class="flex items-center gap-4">
                     <Link :href="route('realtor.listing.index')">My Listings</Link>
                     <div class="text-sm text-gray-500">{{user.name}}</div>
-                    <Link :href="route('listing.create')" class="btn-primary">+ New Listing</Link>
+                    <Link :href="route('realtor.listing.create')" class="btn-primary">+ New Listing</Link>
                     <div>
                         <Link :href="route('logout')" method="delete" as="button">Logout</Link>
                     </div>
@@ -24,11 +24,6 @@
                     <Link :href="route('login')">Sign In</Link>
                 </div> -->
             </nav>
-            <hr class="bg-red-600 w-full h-2">
-            <hr class="bg-white w-full h-1">
-            <hr class="bg-blue-600 w-full h-2">
-            <hr class="bg-white w-full h-1">
-            <hr class="bg-green-600 w-full h-2">
         </div>
         
     </header>

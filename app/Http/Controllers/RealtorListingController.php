@@ -22,17 +22,24 @@ class RealtorListingController extends Controller
             'Realtor/Index', 
             ['listings' => Auth::user()
                 ->listings()
-                ->mostRecent()
+                // ->mostRecent()
                 ->filter($filters)
-                ->get()
+                // ->get()
+                ->paginate(9)
             ]
         );
     }
 // /////////////
+
+    public function create()
+    {
+        return inertia('Realtor/Create');
+    }
+
     public function edit(Listing $listing)
     {
         return inertia(
-            'Listing/Edit',
+            'Realtor/Edit',
             [
                 'listing' => $listing
             ]
@@ -53,14 +60,15 @@ class RealtorListingController extends Controller
                 'price' => 'required|integer|min:1'
             ])
         );
-        return redirect()->route('listing.index')
+        // return redirect()->route('listing.index')
+        return redirect()->route('realtor.listing.index')
             ->with('success', 'Listing updated successfully.');
     }
 // ///////////////////
     public function destroy(Listing $listing)
     {
         $listing->deleteOrFail();
-        return redirect()->route('listing.index')
+        return redirect()->route('realtor.listing.index')
             ->with('success', 'Listing deleted successfully.');
     }
 
