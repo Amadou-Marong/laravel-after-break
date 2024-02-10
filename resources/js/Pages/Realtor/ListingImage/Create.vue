@@ -8,9 +8,16 @@
             :action="route('realtor.listing.image.store', { listing: listing.id })" -->
         <form
             @submit.prevent="upload">
-            <input type="file" multiple @input="addFiles"/>
-            <button type="submit" class="btn-outline mx-2 disabled:opacity-25 disabled:cursor-not-allowed" :disabled="!canUpload">Upload</button>
-            <button type="reset" class="btn-outline" @click="reset">Reset</button>
+            <section class="flex items-center gap-2 my-4">
+                <input class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-100 file:hover:bg-gray-200 file:dark:hover:bg-gray-500" type="file" multiple @input="addFiles"/>
+                <button 
+                    type="submit" 
+                    class="btn-outline disabled:opacity-25 disabled:cursor-not-allowed" 
+                    :disabled="!canUpload">Upload
+                </button>
+                <button 
+                    type="reset" class="btn-outline" @click="reset">Reset</button>
+            </section>
         </form>
     </Box>
     
@@ -19,8 +26,16 @@
     import { computed } from 'vue';
     import Box from '@/Components/UI/Box.vue';
     import { useForm } from '@inertiajs/vue3';
+    import { Inertia } from '@inertiajs/inertia';
+    import NProgress from 'nprogress';
     
     const props = defineProps({listing: Object})
+
+    Inertia.on('progress', (event) => {
+        if (event.detail.progress.percentage){
+            NProgress.set((event.detail.progress.percentage / 100) * 0.9)
+        }
+    })    
 
     const form = useForm({
         images: [],
