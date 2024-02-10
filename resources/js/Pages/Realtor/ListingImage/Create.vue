@@ -1,17 +1,22 @@
 <template>
     <Box>
         <template #header>Upload New Images</template>
-        <form
+        <!-- <form
             enctype="multipart/form-data" 
-            method="POST" 
-            :action="route('realtor.listing.image.store', { listing: listing.id })">
+            method="POST"
             <input type="file" multiple name="images[]" />
-            <button type="submit">Upload</button>
+            :action="route('realtor.listing.image.store', { listing: listing.id })" -->
+        <form
+            @submit.prevent="upload">
+            <input type="file" multiple @input="addFiles"/>
+            <button type="submit" class="btn-outline mx-2 disabled:opacity-25 disabled:cursor-not-allowed" :disabled="!canUpload">Upload</button>
+            <button type="reset" class="btn-outline" @click="reset">Reset</button>
         </form>
     </Box>
     
 </template>
 <script setup>
+    import { computed } from 'vue';
     import Box from '@/Components/UI/Box.vue';
     import { useForm } from '@inertiajs/vue3';
     
@@ -21,6 +26,8 @@
         images: [],
     })
 
+    const canUpload = computed(() => form.images.length)
+
     const upload = () => {
         form.post(
             route('realtor.listing.image.store', { listing: props.listing.id }),
@@ -29,7 +36,11 @@
             }
         )
     }
-    const addFiles = (e) => {
-        form.setData('images', e.target.files)
+    const addFiles = (event) => {
+        for (const image of event.target.files) {
+            form.images.push(image)
+        }
     }
+
+    const reset = () => form.reset('images')
 </script>
