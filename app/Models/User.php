@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -47,8 +48,14 @@ class User extends Authenticatable
     public function listings(): HasMany
     {
         return $this->hasMany(
-            \App\Models\Listing::class, 'by_user_id'
+            Listing::class, 'by_user_id'
         );
     }
 
+    public function offers(): HasMany
+    {
+        return $this->hasMany(
+            Offer::class, 'bidder_id'
+        );
+    }
 }
