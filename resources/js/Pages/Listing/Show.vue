@@ -29,8 +29,14 @@
                 <ListingSpace :listing="listing" class="text-lg"/>
                 <ListingAddress :listing="listing" class="text-green-900 dark:text-gray-500"/>
             </Box>
-    
-            <Box>
+            <MakeOffer 
+                v-if="user && !offerMade" 
+                @offer-updated="offer = $event" 
+                :listing-id="listing.id" 
+                :price="listing.price"
+            />
+            <OfferMade v-if="user && offerMade" :offer="offerMade"/>
+            <!-- <Box>
                 <template #header>
                     Monthly Payment
                 </template>
@@ -49,7 +55,7 @@
                         <Price :price="monthlyPayment" class="text-2xl font-bold text-green-900 dark:text-gray-500"/>   
                     </div>
                 </div>
-            </Box>
+            </Box> -->
         </div>
     </div>
 </template>
@@ -59,6 +65,11 @@
     import ListingSpace from '@/Components/ListingSpace.vue'
     import Price from '@/Components/Price.vue'
     import Box from '@/Components/UI/Box.vue';
+    import MakeOffer from './Show/Components/MakeOffer.vue'
+    import {Link, usePage} from '@inertiajs/vue3'
+    import { computed } from 'vue';
+    import OfferMade from './Show/Components/OfferMade.vue';
+
 
     // import {ref, computed} from 'vue';
     import {ref} from 'vue';
@@ -70,8 +81,11 @@
     const duration = ref(15);
 
     const props = defineProps({
-        listing: Object
+        listing: Object,
+        offerMade: Object,
     })
+
+    const offer = ref(props.listing.price)
 
     // this is the simpler way to do it
     // const monthlyPayment = computed(() => {
@@ -91,6 +105,10 @@
     // })
 
     // we would use the composables to calculate the monthly payment
-   const { monthlyPayment } = useMonthlyPayment(props.listing.price, interestRate, duration)
+//    const { monthlyPayment } = useMonthlyPayment(props.listing.price, interestRate, duration)
+   const { monthlyPayment } = useMonthlyPayment(offer, interestRate, duration)
+
+    const page = usePage();
+    const user = computed(() => page.props.auth.user);
 
 </script>

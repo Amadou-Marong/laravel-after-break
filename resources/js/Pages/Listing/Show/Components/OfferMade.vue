@@ -21,6 +21,6 @@
     })
 
     const offerMadeOn = computed(
-        () => Date(props.offer.created_at).toDateString(),
+        () =>new Date(props.offer.created_at).toDateString(),
     )
 </script>
