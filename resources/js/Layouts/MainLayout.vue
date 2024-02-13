@@ -5,7 +5,9 @@
                 
                 <div class="text-xl text-green-600 dark:text-green-300 font-bold text-center">
                     <Link :href="route('listing.index')">
-                        <img class="w-16" src="/resources/assets/images/logo.jpg" alt="">
+                        <!-- <img class="w-16" src="/resources/assets/images/logo.jpg" alt=""> -->
+                        <!-- <img class="w-16" src="/resources/assets/images/logo1.png" alt=""> -->
+                        <span>LOGO</span>
                     </Link>
                 </div>
                 <div class="text-lg font-medium">
@@ -19,10 +21,10 @@
                         <Link :href="route('logout')" method="delete" as="button">Logout</Link>
                     </div>
                 </div>
-                <!-- <div v-else class="flex items-center gap-4">
+                <div v-else class="flex items-center gap-4">
                     <Link :href="route('user-account.create')">Register</Link>
                     <Link :href="route('login')">Sign In</Link>
-                </div> -->
+                </div>
             </nav>
         </div>
         

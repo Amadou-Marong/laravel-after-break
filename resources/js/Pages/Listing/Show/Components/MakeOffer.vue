@@ -1,22 +1,58 @@
 <template>
     <Box>
-        <template>Make an Offer</template>
+        <template #header>Make an Offer</template>
         <div>
-            <form action="">
-                <input type="text" class="input">
+            <form @submit.prevent="makeOffer">
+                <input v-model.number="form.amount" type="text" class="input">
                 <input 
-                    type="range" min="0.1" max="30" step="0.1" 
-                    class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                <button type="submit" class="btn-outline w-full text-sm mt-2">Make Offer</button>
+                    v-model.number="form.amount"
+                    type="range" :min="min" :max="max" step="10000" 
+                    class="w-full mt-2 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                <button type="submit" class="btn-outline w-full text-sm mt-2">Submit Offer</button>
                 <div class="flex justify-between text-gray-500 mt-2">
                     <span>Difference</span>
-                    <span> <Price :price="100" /> </span>
+                    <span> <Price :price="difference" /> </span>
                 </div>
+                <span>{{form.errors.amount}}</span>
             </form>
         </div>
     </Box>
 </template>
 <script setup>
-   import Box from '@/Components/UI/Box.vue';
-   import Price from '@/Components/Price.vue';
+    import Box from '@/Components/UI/Box.vue';
+    import Price from '@/Components/Price.vue';
+    import {useForm} from '@inertiajs/vue3';
+    import {computed, watch} from 'vue';
+    import {debounce} from 'lodash'
+
+   const props = defineProps({
+       listingId: Number,
+       price: Number,
+   })
+
+   const form = useForm({
+       amount: props.price,
+   })
+
+   const makeOffer = () => {
+       form.post(route('listing.offer.store', 
+                {listing: props.listingId}),
+            {
+                preserveScroll: true,
+                preserveState: true,
+            }
+        )
+   }
+
+   const difference = computed(() => form.amount - props.price)
+
+   const min = computed(() => props.price / 2)
+   const max = computed(() => props.price * 2)
+
+   const emit = defineEmits(['offerUpdated'])
+
+    watch(
+        () => form.amount, 
+        debounce((value) => emit('offerUpdated', value), 200)
+    )
 </script>

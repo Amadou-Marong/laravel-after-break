@@ -32,7 +32,14 @@
                     <Link 
                         class="block w-full text-center btn-outline text-xs font-medium" 
                         :href="route('realtor.listing.image.create', {listing: listing.id})"
-                    >Upload Images</Link>
+                    >Images ({{ listing.images_count }})</Link>
+                </div>
+                
+                <div class="mt-2">
+                    <Link 
+                        class="block w-full text-center btn-outline text-xs font-medium" 
+                        :href="route('realtor.listing.show', {listing: listing.id})"
+                    >Offers ({{ listing.offers_count }})</Link>
                 </div>
             </section>
         </div>

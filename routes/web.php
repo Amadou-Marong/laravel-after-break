@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
+use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\AcceptOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +33,14 @@ Route::get('/hello', [IndexController::class, 'show'])->middleware('auth');
 Route::resource('listing', ListingController::class)
     ->only(['create', 'store', 'edit', 'update'])
     ->middleware('auth');
+
+    
 Route::resource('listing', ListingController::class)
     ->except(['create', 'store', 'edit', 'update', 'destroy']);
 
+Route::resource('listing.offer', ListingOfferController::class)
+    ->only(['store'])
+    ->middleware('auth');
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
@@ -47,8 +54,11 @@ Route::prefix('realtor')
     ->middleware('auth')
     ->group(function () {
         Route::resource('listing', RealtorListingController::class)
-            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+            // ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+            
             ->withTrashed();
+
+        Route::name('offer.accept')->put('offer/{offer}/accept', AcceptOfferController::class);
 
         Route::resource('listing.image', RealtorListingImageController::class)
             ->only(['create', 'store', 'destroy']);
