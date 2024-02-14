@@ -15,13 +15,14 @@ return new class extends Migration
             $table->unsignedTinyInteger('beds');
             $table->unsignedTinyInteger('baths');
             $table->unsignedSmallInteger('area');
-
+            
             $table->tinyText('city');
             $table->tinyText('code');
             $table->tinyText('street');
             $table->tinyText('street_nr');
 
             $table->unsignedInteger('price');
+            $table->string('imageUrl');
         });
     }
 
@@ -31,7 +32,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropColumns('listings', [
-            'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price'
+            'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price', 'imageUrl'
         ]);
     }
 };

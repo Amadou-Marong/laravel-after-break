@@ -50,6 +50,12 @@
           <input class="input" type="text" v-model.number="form.price"/>
           <span class="input-error" v-if="form.errors.price">{{form.errors.price}}</span>
         </div>
+        
+        <div class="col-span-6">
+          <label class="label">Image Url</label>
+          <input class="input" type="url" v-model="form.url"/>
+          <span class="input-error" v-if="form.errors.url">{{form.errors.url}}</span>
+        </div>
   
         <div class="col-span-6">
           <button class="btn-primary" type="submit">Create</button>
@@ -72,6 +78,7 @@
         code: null,
         street_nr: null,
         price: 0,
+        imageUrl: ''
     })
 
     // const create = () => form.post('/listing', form)

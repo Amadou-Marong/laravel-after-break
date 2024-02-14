@@ -158,7 +158,8 @@ class ListingController extends Controller
                 'code' => 'required',
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
-                'price' => 'required|integer|min:1'
+                'price' => 'required|integer|min:1',
+                'url' => 'required|url'
             ])
         );
         return redirect()->route('listing.index')
@@ -226,7 +227,8 @@ class ListingController extends Controller
                 'code' => 'required',
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
-                'price' => 'required|integer|min:1'
+                'price' => 'required|integer|min:1',
+                'imageUrl' => 'required|url'
             ])
         );
         return redirect()->route('listing.index')

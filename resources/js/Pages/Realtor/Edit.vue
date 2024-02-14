@@ -48,6 +48,12 @@
           <input class="input" type="text" v-model.number="form.price"/>
           <span class="input-error" v-if="form.errors.price">{{form.errors.price}}</span>
         </div>
+        
+        <div class="col-span-6">
+          <label class="label">Image Url</label>
+          <input class="input" type="url" v-model="form.imageUrl"/>
+          <span class="input-error" v-if="form.errors.url">{{form.errors.url}}</span>
+        </div>
   
         <div class="col-span-6">
           <button class="btn-primary" type="submit">Update</button>
@@ -75,6 +81,7 @@
         code: props.listing.code,
         street_nr: props.listing.street_nr,
         price: props.listing.price,
+        imageUrl: props.listing.imageUrl
     });
 
     // const update = () => form.put(`/listing/${props.listing.id}`);
