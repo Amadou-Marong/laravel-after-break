@@ -9,6 +9,7 @@
             :key="offer.id" 
             :offer="offer"
             :listing-price="listing.price"
+            :is-sold="listing.sold_at !== null"
          />
       </div>
       <Box v-else class="flex md:col-span-7 items-center">

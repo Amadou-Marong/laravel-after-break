@@ -55,6 +55,24 @@ class RealtorListingController extends Controller
         );
     }
 
+    public function store(Request $request)
+    {
+        Auth::user()->listings()->create(
+            $request->validate([
+                'beds' => 'required|integer|min:0|max:20',
+                'baths' => 'required|integer|min:0|max:20',
+                'area' => 'required|integer|min:15|max:1500',
+                'city' => 'required',
+                'code' => 'required',
+                'street' => 'required',
+                'street_nr' => 'required|min:1|max:1000',
+                'price' => 'required|integer|min:1'
+            ])
+        );
+        return redirect()->route('realtor.listing.index')
+            ->with('success', 'Listing created successfully.');
+    }
+
     public function update(Request $request, Listing $listing)
     {
         $listing->update(

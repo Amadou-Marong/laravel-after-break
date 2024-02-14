@@ -10,14 +10,14 @@
                         <span>LOGO</span>
                     </Link>
                 </div>
-                <div class="text-lg font-medium">
+                <div class="text-lg font-medium hidden sm:block">
                     <Link class="dark:text-white font-bold text-green-600" :href="route('listing.index')">Listings</Link>
                 </div>
-                <div v-if="user" class="flex items-center gap-4">
-                    <Link :href="route('realtor.listing.index')">My Listings</Link>
-                    <div class="text-sm text-gray-500">{{user.name}}</div>
-                    <Link :href="route('realtor.listing.create')" class="btn-primary">+ New Listing</Link>
-                    <div>
+                <div v-if="user" class="items-center gap-4 flex">
+                    <Link class="dark:text-white hidden sm:block font-bold text-green-600" :href="route('realtor.listing.index')">My Listings</Link>
+                    <div class="text-sm hidden sm:block text-gray-500">{{user.name}}</div>
+                    <Link :href="route('realtor.listing.create')" class="btn-primary hidden sm:block">+ New Listing</Link>
+                    <div class="hidden sm:block">
                         <Link :href="route('logout')" method="delete" as="button">Logout</Link>
                     </div>
                 </div>
@@ -25,6 +25,40 @@
                     <Link :href="route('user-account.create')">Register</Link>
                     <Link :href="route('login')">Sign In</Link>
                 </div>
+                <!-- BEGIN: Navbar for smaller screens -->
+                <div class="sm:hidden">
+                    <button @click="toggleNavbar" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <div v-if="showNavbar" class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+                        <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                            <div class="px-5 pt-4 flex items-center justify-between">
+                                <div>
+                                    <!-- <Link :href="route('listing.index')" class="text-green-600 dark:text-green-300 font-bold text-center">
+                                        <span>LOGO</span>
+                                    </Link> -->
+                                </div>
+                                <div class="-mr-2">
+                                    <button @click="toggleNavbar" type="button" class="bg-white dark:bg-slate-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                                        <span class="sr-only">Close menu</span>
+                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="px-2 pt-2 pb-3 space-y-1">
+                                <Link :href="route('listing.index')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">Listings</Link>
+                                <Link :href="route('realtor.listing.index')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">My Listings</Link>
+                                <Link :href="route('realtor.listing.create')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">+ New Listing</Link>
+                                <Link :href="route('logout')" method="delete" as="button" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">Logout</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Navbar for smaller screens -->
             </nav>
         </div>
         
@@ -39,30 +73,26 @@
         </div>
     </main>
 
-    <footer class="p-20">
+    <!-- <footer class="p-20">
         <p>copyright &copy; 2024 by Ahmad @ GNPC</p>
-    </footer>
+    </footer> -->
 </template>
 
 <script setup>
 
 import {Link, usePage} from '@inertiajs/vue3'
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const page = usePage();
-
-// I used this instead of the above flash alert line
 const flashSuccess = computed(() => page.props.flash.success);
 const user = computed(() => page.props.auth.user);
 
-// import { ref } from 'vue';
+const showNavbar = ref(false);
 
-// setInterval(() => {
-//     timer.value++;
-// }, 1000);
+function toggleNavbar() {
+    showNavbar.value = !showNavbar.value;
+}
 
-// setInterval(() => timer.value++, 1000);
-// const timer = ref(0);
 </script>
 
 <style scoped>
