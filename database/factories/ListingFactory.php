@@ -16,6 +16,11 @@ class ListingFactory extends Factory
      */
     public function definition(): array
     {
+        $listingImages = [
+            'https://example.com/listing-image1.jpg',
+            'https://example.com/listing-image2.jpg',
+            'https://example.com/listing-image3.jpg',
+        ];
         return [
             'beds' => fake()->numberBetween(1, 7),
             'baths' => fake()->numberBetween(1, 7),
@@ -25,7 +30,7 @@ class ListingFactory extends Factory
             'street' => fake()->streetName(),
             'street_nr' => fake()->numberBetween(10, 200),
             'price' => fake()->numberBetween(50_000, 2_000_000),
-            'imageUrl' => fake()->imageUrl(),
+            'listing_image' => $this->faker->randomElement($listingImages),
         ];
     }
 }

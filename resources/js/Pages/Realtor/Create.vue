@@ -52,9 +52,9 @@
         </div>
         
         <div class="col-span-6">
-          <label class="label">Image Url</label>
-          <input class="input" type="url" v-model="form.url"/>
-          <span class="input-error" v-if="form.errors.url">{{form.errors.url}}</span>
+          <label class="label">Image Upload</label>
+          <input class="input" type="file" @change="handleChange">
+          <span class="input-error" v-if="form.errors.listing_image">{{ form.errors.listing_image }}</span>
         </div>
   
         <div class="col-span-6">
@@ -68,6 +68,9 @@
     // import {reactive} from 'vue';
     import { useForm } from '@inertiajs/vue3';
 
+    const handleChange = (e) => {
+      form.listing_image = e.target.files[0]
+    }
 
     const form = useForm({
         beds: 0,
@@ -78,7 +81,7 @@
         code: null,
         street_nr: null,
         price: 0,
-        imageUrl: ''
+        listing_image: null
     })
 
     // const create = () => form.post('/listing', form)

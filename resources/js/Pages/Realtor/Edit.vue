@@ -51,7 +51,7 @@
         
         <div class="col-span-6">
           <label class="label">Image Url</label>
-          <input class="input" type="url" v-model="form.imageUrl"/>
+          <input class="input" type="file" @change="handleChange"/>
           <span class="input-error" v-if="form.errors.url">{{form.errors.url}}</span>
         </div>
   
@@ -70,7 +70,14 @@
         listing: Object,
     });
 
-
+    const handleChange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            form.imageUrl = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    };
 
     const form = useForm({
         beds: props.listing.beds,
@@ -81,7 +88,7 @@
         code: props.listing.code,
         street_nr: props.listing.street_nr,
         price: props.listing.price,
-        imageUrl: props.listing.imageUrl
+        listing_image: null,
     });
 
     // const update = () => form.put(`/listing/${props.listing.id}`);
