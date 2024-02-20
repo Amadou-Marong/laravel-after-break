@@ -148,22 +148,41 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        // Listing::create($request->all());
-        $request->user()->listings()->create(
-            $request->validate([
-                'beds' => 'required|integer|min:0|max:20',
-                'baths' => 'required|integer|min:0|max:20',
-                'area' => 'required|integer|min:15|max:1500',
-                'city' => 'required',
-                'code' => 'required',
-                'street' => 'required',
-                'street_nr' => 'required|min:1|max:1000',
-                'price' => 'required|integer|min:1',
-                'url' => 'required|url'
-            ])
-        );
-        return redirect()->route('listing.index')
-            ->with('success', 'Listing created successfully.');
+        $request->validate([
+            'beds' => 'required|integer|min:0|max:20',
+            'baths' => 'required|integer|min:0|max:20',
+            'area' => 'required|integer|min:15|max:1500',
+            'city' => 'required',
+            'code' => 'required',
+            'street' => 'required',
+            'street_nr' => 'required|min:1|max:1000',
+            'price' => 'required|integer|min:1',
+            'listing_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+    
+        // Handle file upload
+        if ($request->hasFile('listing_image')) {
+            $imagePath = $request->file('listing_image')->store('public/listing_images');
+            $imageName = basename($imagePath);
+        } else {
+            $imageName = null;
+        }
+    
+        // Create the listing
+        $listing = new Listing([
+            'beds' => $request->beds,
+            'baths' => $request->baths,
+            'area' => $request->area,
+            'city' => $request->city,
+            'code' => $request->code,
+            'street' => $request->street,
+            'street_nr' => $request->street_nr,
+            'price' => $request->price,
+            'listing_image' => $imageName
+        ]);
+        $request->user()->listings()->save($listing);
+    
+        return redirect()->route('listing.index')->with('success', 'Listing created successfully.');
     }
 
     /**
@@ -228,7 +247,7 @@ class ListingController extends Controller
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
                 'price' => 'required|integer|min:1',
-                'imageUrl' => 'required|url'
+                'listing_image' => 'required|url'
             ])
         );
         return redirect()->route('listing.index')

@@ -3,36 +3,38 @@
 @tailwind utilities;
 
 @layer components {
-  
-  .label {
-      @apply block mb-1 text-gray-500 dark:text-gray-300 font-medium;
-  }
-  .input {
-    /* @apply w-full px-3 py-2 border rounded-md text-gray-700 dark:text-gray-300 focus:outline-none focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:focus:border-blue-500; */
-        @apply block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-700 text-gray-500
+    
+    .label {
+        @apply block mb-1 text-gray-500 dark:text-gray-300 font-medium;
     }
+    
+    .input {
+        @apply block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-700 text-gray-500;
+        transition: border-color 0.3s ease;
+    }
+    
     .input:focus {
-        /* @apply focus:outline-none focus:border-green-300 dark:border-gray-500; */
-        @apply focus:outline-none focus:border-green-300 dark:border-gray-500;
+        @apply focus:outline-none focus:border-blue-300 dark:border-gray-500;
+        border-color: #4F46E5;
     }
+    
     .btn-primary {
-        @apply bg-green-600 hover:bg-green-500 p-2 rounded-md text-white text-pretty;
+        @apply bg-blue-600 hover:bg-blue-500 p-2 rounded-md text-white text-pretty;
     }
+    
     .input-error {
         @apply text-sm text-red-500 dark:text-red-400;
     }
 
-    .input-filter-r{  
-        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border-gray-200 dark:border-gray-700 rounded-t-md rounded-b-md rounded-l-md rounded-r-none text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800
+    .input-filter-r {  
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border-gray-200 dark:border-gray-700 rounded-t-md rounded-b-md rounded-l-md rounded-r-none text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800;
     }
-    .input-filter-l{
-        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border-gray-200 dark:border-gray-700 rounded-t-md rounded-b-md rounded-l-none rounded-r-md text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800
+    
+    .input-filter-l {
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border-gray-200 dark:border-gray-700 rounded-t-md rounded-b-md rounded-l-none rounded-r-md text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800;
     }
 
     .btn-outline {
-        @apply p-2 rounded-md border shadow-md border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800
+        @apply p-2 rounded-md border shadow-md border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800;
     }
-        
-
-
 }

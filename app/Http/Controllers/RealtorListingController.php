@@ -66,7 +66,8 @@ class RealtorListingController extends Controller
                 'code' => 'required',
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
-                'price' => 'required|integer|min:1'
+                'price' => 'required|integer|min:1',
+                'listing_image' => 'nullable|url'
             ])
         );
         return redirect()->route('realtor.listing.index')
@@ -84,7 +85,8 @@ class RealtorListingController extends Controller
                 'code' => 'required',
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
-                'price' => 'required|integer|min:1'
+                'price' => 'required|integer|min:1',
+                'listing_image' => 'nullable|url'
             ])
         );
         // return redirect()->route('listing.index')

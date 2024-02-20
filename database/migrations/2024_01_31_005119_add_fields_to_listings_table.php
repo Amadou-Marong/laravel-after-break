@@ -22,7 +22,7 @@ return new class extends Migration
             $table->tinyText('street_nr');
 
             $table->unsignedInteger('price');
-            $table->string('imageUrl');
+            $table->string('listing_image');
         });
     }
 
@@ -32,7 +32,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropColumns('listings', [
-            'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price', 'imageUrl'
+            'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price', 'listing_image'
         ]);
     }
 };
