@@ -22,7 +22,7 @@ return new class extends Migration
             $table->tinyText('street_nr');
 
             $table->unsignedInteger('price');
-            $table->string('listing_image');
+            $table->string('listing_image')->nullable()->default('https://cdn.pixabay.com/photo/2015/09/27/22/36/house-961401_960_720.jpg');
         });
     }
 

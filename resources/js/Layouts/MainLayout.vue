@@ -3,18 +3,16 @@
         <div class="container mx-auto">
             <nav class="p-4 flex items-center justify-between">
                 
-                <div class="text-xl text-green-600 dark:text-green-300 font-bold text-center">
+                <div class="text-xl text-blue-600 dark:text-blue-300 font-bold text-center">
                     <Link :href="route('listing.index')">
-                        <!-- <img class="w-16" src="/resources/assets/images/logo.jpg" alt=""> -->
-                        <!-- <img class="w-16" src="/resources/assets/images/logo1.png" alt=""> -->
-                        <span>LOGO</span>
+                        <span class="text-2xl font-bold">LOGO</span>
                     </Link>
                 </div>
                 <div class="text-lg font-medium hidden sm:block">
-                    <Link class="dark:text-white font-bold text-green-600" :href="route('listing.index')">Listings</Link>
+                    <Link class="dark:text-white font-bold text-blue-600" :href="route('listing.index')">Listings</Link>
                 </div>
                 <div v-if="user" class="items-center gap-4 flex">
-                    <Link class="dark:text-white hidden sm:block font-bold text-green-600" :href="route('realtor.listing.index')">My Listings</Link>
+                    <Link class="dark:text-white hidden sm:block font-bold text-blue-600" :href="route('realtor.listing.index')">My Listings</Link>
                     <div class="text-sm hidden sm:block text-gray-500">{{user.name}}</div>
                     <Link :href="route('realtor.listing.create')" class="btn-primary hidden sm:block">+ New Listing</Link>
                     <div class="hidden sm:block">
@@ -36,12 +34,12 @@
                         <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div class="px-5 pt-4 flex items-center justify-between">
                                 <div>
-                                    <!-- <Link :href="route('listing.index')" class="text-green-600 dark:text-green-300 font-bold text-center">
+                                    <!-- <Link :href="route('listing.index')" class="text-blue-600 dark:text-blue-300 font-bold text-center">
                                         <span>LOGO</span>
                                     </Link> -->
                                 </div>
                                 <div class="-mr-2">
-                                    <button @click="toggleNavbar" type="button" class="bg-white dark:bg-slate-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                                    <button @click="toggleNavbar" type="button" class="bg-white dark:bg-slate-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                                         <span class="sr-only">Close menu</span>
                                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -114,5 +112,27 @@ function toggleNavbar() {
         color: #fff;
         font-weight: bold;
         text-align: center;
+    }
+    .text-blue-600 {
+        color: #3182ce;
+    }
+    .dark:text-blue-300 {
+        color: #a0aec0;
+    }
+    .dark:bg-slate-800 {
+        background-color: #1a202c;
+    }
+    .dark:text-white {
+        color: #fff;
+    }
+    .btn-primary {
+        background-color: #3182ce;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .btn-primary:hover {
+        background-color: #2c5282;
     }
 </style>

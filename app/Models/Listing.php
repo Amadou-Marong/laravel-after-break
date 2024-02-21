@@ -18,7 +18,13 @@ class Listing extends Model
     protected $fillable = [
         'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price', 'listing_image'
     ];
+    protected $appends = ['src'];
 
+    public function getSrcAttribute(): string
+    {
+        return asset("storage/{$this->listing_image}");
+    }
+    
     public function owner(): BelongsTo
     {
         return $this->belongsTo(

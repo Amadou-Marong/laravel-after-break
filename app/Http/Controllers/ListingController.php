@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -162,7 +163,7 @@ class ListingController extends Controller
     
         // Handle file upload
         if ($request->hasFile('listing_image')) {
-            $imagePath = $request->file('listing_image')->store('public/listing_images');
+            $imagePath = $request->file('listing_image')->store('public');
             $imageName = basename($imagePath);
         } else {
             $imageName = null;
@@ -250,6 +251,8 @@ class ListingController extends Controller
                 'listing_image' => 'required|url'
             ])
         );
+        $request->user()->listings()->save($listing);
+        
         return redirect()->route('listing.index')
             ->with('success', 'Listing updated successfully.');
     }
