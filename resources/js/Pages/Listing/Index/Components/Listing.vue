@@ -2,17 +2,17 @@
     <Box>
         <div>
             <Link :href="route('listing.show', {listing: listing.id})">
-                {{ listing.listing_image }}
+            
                 <img :src="listing.listing_image" alt="listing image" class="w-full h-64 object-cover"/>
                 <div class="flex items-center gap-1">
-                    <Price :price="listing.price" class="text-2xl font-bold text-green-900 dark:text-gray-500"/>
+                    <Price :price="listing.price" class="text-2xl font-bold text-blue-900 dark:text-gray-500"/>
                     <div class="text-xs text-gray-500">
-                        <Price :price="monthlyPayment" class="text-green-900 dark:text-gray-500"/> per month
+                        <Price :price="monthlyPayment" class="text-blue-900 dark:text-gray-500"/> per month
                     </div>
                 </div>
                 
                 <ListingSpace :listing="listing" class="text-lg"/>
-                <ListingAddress :listing="listing" class="text-green-900 dark:text-gray-500"/>
+                <ListingAddress :listing="listing" class="text-blue-900 dark:text-gray-500"/>
             </Link>
         </div>
         <div>
