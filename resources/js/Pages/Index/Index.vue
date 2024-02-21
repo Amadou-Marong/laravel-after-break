@@ -8,7 +8,7 @@
                 <p class="text-gray-600">{{ property.description }}</p>
                 <div class="flex justify-between items-center mt-4">
                     <span class="text-gray-500">{{ property.location }}</span>
-                    <span class="text-green-500 font-bold">{{ property.price }}</span>
+                    <span class="text-blue-500 font-bold">{{ property.price }}</span>
                 </div>
             </div>
         </div>
