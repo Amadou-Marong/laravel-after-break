@@ -12,6 +12,9 @@
                     <Link class="dark:text-white font-bold text-blue-600" :href="route('listing.index')">Listings</Link>
                 </div>
                 <div v-if="user" class="items-center gap-4 flex">
+                    <div class="text-gay-500 relative">
+                        🔔 <span class="absolute right-0 top-0 bg-red-700 dark:bg-red-400 text-white border border-">6</span>
+                    </div>
                     <Link class="dark:text-white hidden sm:block font-bold text-blue-600" :href="route('realtor.listing.index')">My Listings</Link>
                     <div class="text-sm hidden sm:block text-gray-500">{{user.name}}</div>
                     <Link :href="route('realtor.listing.create')" class="btn-primary hidden sm:block">+ New Listing</Link>
@@ -84,6 +87,10 @@ import { computed, ref } from 'vue';
 const page = usePage();
 const flashSuccess = computed(() => page.props.flash.success);
 const user = computed(() => page.props.auth.user);
+
+const notificationCount = computed(
+    () => page.props.auth.user.notifications
+)
 
 const showNavbar = ref(false);
 
