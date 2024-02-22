@@ -150,9 +150,9 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'beds' => 'required|integer|min:0|max:20',
-            'baths' => 'required|integer|min:0|max:20',
-            'area' => 'required|integer|min:15|max:200000',
+            'beds' => 'required|integer|min:0|max:200',
+            'baths' => 'required|integer|min:0|max:200',
+            'area' => 'required|integer|min:15|max:90000000000000000000000000000000000',
             'city' => 'required',
             'code' => 'required',
             'street' => 'required',
@@ -239,15 +239,15 @@ class ListingController extends Controller
     {
         $listing->update(
             $request->validate([
-                'beds' => 'required|integer|min:0|max:20',
-                'baths' => 'required|integer|min:0|max:20',
-                'area' => 'required|integer|min:15|max:200000',
+                'beds' => 'required|integer|min:0|max:200',
+                'baths' => 'required|integer|min:0|max:200',
+                'area' => 'required|integer|min:15|max:90000000000000000000000000000000000',
                 'city' => 'required',
                 'code' => 'required',
                 'street' => 'required',
                 'street_nr' => 'required|min:1|max:1000',
                 'price' => 'required|integer|min:1',
-                'listing_image' => 'required|url'
+                'listing_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
             ])
         );
         $request->user()->listings()->save($listing);

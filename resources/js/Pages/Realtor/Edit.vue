@@ -52,7 +52,7 @@
         <div class="col-span-6">
           <label class="label">Image Url</label>
           <!-- <input class="input" type="file" @change="handleChange"/> -->
-          <input class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-100 file:hover:bg-gray-200 file:dark:hover:bg-gray-500" type="file" multiple @change="addFile"/>
+          <input class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-100 file:hover:bg-gray-200 file:dark:hover:bg-gray-500" type="file" multiple @input="form.listing_image = $event.target.files[0]"/>
           <span class="input-error" v-if="form.errors.listing_image">{{ form.errors.listing_image }}</span>
         </div>
   
@@ -71,15 +71,15 @@
         listing: Object,
     });
 
-    const addFile = (e) => {
-        const file = e.target.files[0];
-        // const reader = new FileReader();
-        // reader.onload = (e) => {
-        //     form.imageUrl = e.target.result;
-        // };
-        // reader.readAsDataURL(file);
-        this.form.listing_image = file;
-    };
+    // const addFile = (e) => {
+    //     const file = e.target.files[0];
+    //     // const reader = new FileReader();
+    //     // reader.onload = (e) => {
+    //     //     form.imageUrl = e.target.result;
+    //     // };
+    //     // reader.readAsDataURL(file);
+    //     this.form.listing_image = file;
+    // };
 
     const form = useForm({
         beds: props.listing.beds,
@@ -96,7 +96,7 @@
     // const update = () => form.put(`/listing/${props.listing.id}`);
 
     // using ziggy route helper
-    const update = () => form.put(route('listing.update', {listing: props.listing.id}));
+    const update = () => form.put(route('realtor.listing.update', {listing: props.listing.id}));
 </script>
 
   <style scoped>

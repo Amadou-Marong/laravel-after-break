@@ -2,7 +2,6 @@
     <Box>
         <div>
             <Link :href="route('listing.show', {listing: listing.id})">
-            
                 <img :src="listing.listing_image" alt="listing image" class="w-full h-64 object-cover"/>
                 <div class="flex items-center gap-1">
                     <Price :price="listing.price" class="text-2xl font-bold text-blue-900 dark:text-gray-500"/>
