@@ -26,6 +26,7 @@
 import Price from '@/Components/Price.vue';
 import {Link} from '@inertiajs/vue3'
 import Pagination from '@/Components/UI/Pagination.vue';
+import EmptyState from '@/Components/UI/EmptyState.vue';
 
 defineProps({
     notifications: Object,
