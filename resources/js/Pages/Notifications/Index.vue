@@ -13,11 +13,16 @@
             </div>
         </div>
    </section>
+    <EmptyState v-else>No Notifications yet</EmptyState>
+    <section v-if="notifications.data.length" class="w-full flex justify-center mt-4 mb-4">
+        <Pagination :links="notifications.links"/>
+    </section>
 </template>
 
 <script setup>
 import Price from '@/Components/Price.vue';
 import {Link} from '@inertiajs/vue3'
+import Pagination from '@/Components/UI/Pagination.vue';
 
 defineProps({
     notifications: Object,
