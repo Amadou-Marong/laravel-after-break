@@ -5,8 +5,12 @@
                 
                 <div class="text-xl text-blue-600 dark:text-blue-300 font-bold text-center">
                     <Link :href="route('listing.index')">
-                        <span class="text-2xl font-bold">LOGO</span>
+                        <!-- <span class="text-2xl font-bold">LOGO</span> -->
+                        <img src="https://logodix.com/logo/483978.png" alt="logo" class="w-24"/>   
                     </Link>
+                </div>
+                <div class="text-lg font-medium hidden sm:block">
+                    <Link class="dark:text-white font-bold text-blue-600" :href="route('home')">Home</Link>
                 </div>
                 <div class="text-lg font-medium hidden sm:block">
                     <Link class="dark:text-white font-bold text-blue-600" :href="route('listing.index')">Listings</Link>
@@ -51,6 +55,7 @@
                                 </div>
                             </div>
                             <div class="px-2 pt-2 pb-3 space-y-1">
+                                <Link :href="route('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">Home</Link>
                                 <Link :href="route('listing.index')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">Listings</Link>
                                 <Link :href="route('realtor.listing.index')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">My Listings</Link>
                                 <Link :href="route('realtor.listing.create')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700">+ New Listing</Link>

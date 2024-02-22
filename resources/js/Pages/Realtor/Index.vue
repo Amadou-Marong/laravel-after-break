@@ -9,7 +9,10 @@
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 <div>
 
-                    <div v-if="listing.sold_at != null" class="font-bold uppercase text-sm border border-dashed p-1 border-green-300 text-green-500 dark:border-green-500 dark:text-green-500 inline-block rounded-md mb-1">Sold</div>
+                    <!-- <div v-if="listing.sold_at != null" class="font-bold uppercase text-sm border border-dashed p-1 border-green-300 text-green-500 dark:border-green-500 dark:text-green-500 inline-block rounded-md mb-1">Sold</div> -->
+                    <div v-if="listing.sold_at != null" class="flex items-center gap-1">	
+                        <img src="C:\Users\Amadou.Marong\laravel-after-break\resources\assets\images\sold.webp" alt="sold" class="w-40 h-20"/>
+                    </div>
 
                     <div class="xl:flex items-center gap-2">
                         <Price :price="listing.price" class="text-2xl font-medium"/>

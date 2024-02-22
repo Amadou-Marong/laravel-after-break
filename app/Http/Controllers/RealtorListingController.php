@@ -68,7 +68,7 @@ class RealtorListingController extends Controller
                 'street' => 'required',
                 'street_nr' => 'required',
                 'price' => 'required|integer|min:1',
-                // 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+                // 'listing_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ])
         );
         return redirect()->route('realtor.listing.index')
@@ -87,7 +87,7 @@ class RealtorListingController extends Controller
                 'street' => 'required',
                 'street_nr' => 'required',
                 'price' => 'required|integer|min:1',
-                // 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+                // 'listing_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ])
         );
         // return redirect()->route('listing.index')

@@ -23,7 +23,7 @@ use App\Http\Controllers\NotificationReadController;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hello', [IndexController::class, 'show'])->middleware('auth');
 
 // If we want to only include some routes only, we can use only():
