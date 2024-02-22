@@ -22,7 +22,9 @@ class Listing extends Model
 
     public function getSrcAttribute(): string
     {
+        // return asset("storage/{$this->listing_image}");
         return asset("storage/{$this->listing_image}");
+
     }
     
     public function owner(): BelongsTo

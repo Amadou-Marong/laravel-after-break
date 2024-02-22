@@ -10,6 +10,7 @@ use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\AcceptOfferController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\NotificationReadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::resource('listing.offer', ListingOfferController::class)
 
 Route::resource('notification', NotificationController::class)
     ->only(['index'])
+    ->middleware('auth');
+
+Route::put('notification/{notification}/read', [NotificationReadController::class, '__invoke'])
+    ->name('notification.read')
     ->middleware('auth');
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');

@@ -60,15 +60,15 @@ class RealtorListingController extends Controller
     {
         Auth::user()->listings()->create(
             $request->validate([
-                'beds' => 'required|integer|min:0|max:20',
-                'baths' => 'required|integer|min:0|max:20',
-                'area' => 'required|integer|min:15|max:1500',
+                'beds' => 'required|integer|min:0|max:1000',
+                'baths' => 'required|integer|min:0|max:1000',
+                'area' => 'required|numeric|min:0|max:9000000000000000000000000000',
                 'city' => 'required',
                 'code' => 'required',
                 'street' => 'required',
-                'street_nr' => 'required|min:1|max:1000',
+                'street_nr' => 'required',
                 'price' => 'required|integer|min:1',
-                'listing_image' => 'nullable|url'
+                // 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
             ])
         );
         return redirect()->route('realtor.listing.index')
@@ -79,21 +79,22 @@ class RealtorListingController extends Controller
     {
         $listing->update(
             $request->validate([
-                'beds' => 'required|integer|min:0|max:20',
-                'baths' => 'required|integer|min:0|max:20',
-                'area' => 'required|integer|min:15|max:1500',
+                'beds' => 'required|integer|min:0|max:1000',
+                'baths' => 'required|integer|min:0|max:1000',
+                'area' => 'required|numeric|min:15|max:9000000000000000000000000000',
                 'city' => 'required',
                 'code' => 'required',
                 'street' => 'required',
-                'street_nr' => 'required|min:1|max:1000',
+                'street_nr' => 'required',
                 'price' => 'required|integer|min:1',
-                'listing_image' => 'nullable|url'
+                // 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
             ])
         );
         // return redirect()->route('listing.index')
         return redirect()->route('realtor.listing.index')
             ->with('success', 'Listing updated successfully.');
     }
+    
 // ///////////////////
     public function destroy(Listing $listing)
     {
