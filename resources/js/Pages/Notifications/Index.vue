@@ -1,5 +1,5 @@
 <template>
-   <h1 class="text-3xl mb-4">Notifications</h1>
+   <h1 class="text-3xl mb-4 text-center font-medium text-gray-700 dark:text-gray-400">Notifications</h1>
    <section v-if="notifications.data.length" class="text-gray-700 dark:text-gray-400">
         <div v-for="notification in notifications.data" :key="notification.id" class="border-b border-gray-200 dark:border-gray-700 py-4 flex items-center justify-between">
             <div>

@@ -6,7 +6,7 @@
                     id="deleted"
                     v-model="filterForm.deleted"
                     type="checkbox" 
-                    class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
                 <label for="deleted" class="dark:text-gray-300">Deleted</label>
             </div>

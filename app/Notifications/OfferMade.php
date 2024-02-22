@@ -51,7 +51,11 @@ class OfferMade extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'offer_id' => $this->offer->id,
+            'amount' => $this->offer->amount,
+            'listing_id' => $this->offer->listing->id,
+            'bidder_id' => $this->offer->bidder->id,
+            // 'bidder_name' => $this->offer->bidder->name,
         ];
     }
 }

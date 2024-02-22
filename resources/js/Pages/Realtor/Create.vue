@@ -55,7 +55,7 @@
           <label class="label">Image Upload</label>
           <!-- <input class="input" type="file" @change="handleChange"> -->
           <!-- <input class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-100 file:hover:bg-gray-200 file:dark:hover:bg-gray-500" type="file" @input="addFile"/> -->
-          <input class="border rounded-md file:px-4 file:py-2 border-gray-200 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-100 file:hover:bg-gray-200 file:dark:hover:bg-gray-500" type="file" @input="form.listing_image = $event.target.files[0]"/>
+          <input class="border rounded-md file:px-4 file:py-2 border-gray-400 dark:border-gray-600 file:text-gray-600 file:dark:text-gray-300 file:border-0 file:dark:bg-gray-600 file:bg-gray-300 file:hover:bg-gray-400 file:dark:hover:bg-gray-500" type="file" @input="form.listing_image = $event.target.files[0]" name="listing_image"/>
           <span class="input-error" v-if="form.errors.listing_image">{{ form.errors.listing_image }}</span>
         </div>
   
