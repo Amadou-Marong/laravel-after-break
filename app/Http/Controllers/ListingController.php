@@ -152,7 +152,7 @@ class ListingController extends Controller
         $request->validate([
             'beds' => 'required|integer|min:0|max:20',
             'baths' => 'required|integer|min:0|max:20',
-            'area' => 'required|integer|min:15|max:1500',
+            'area' => 'required|integer|min:15|max:200000',
             'city' => 'required',
             'code' => 'required',
             'street' => 'required',
@@ -163,7 +163,7 @@ class ListingController extends Controller
     
         // Handle file upload
         if ($request->hasFile('listing_image')) {
-            $imagePath = $request->file('listing_image')->store('public');
+            $imagePath = $request->file('listing_image')->store('public/storage/images');
             $imageName = basename($imagePath);
         } else {
             $imageName = null;
@@ -187,8 +187,7 @@ class ListingController extends Controller
     }
 
     /**
-     * Display the specified resourc
-     * e.
+     * Display the specified resource.
      */
     // public function show(string $id)
     public function show(Listing $listing)
@@ -242,7 +241,7 @@ class ListingController extends Controller
             $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
                 'baths' => 'required|integer|min:0|max:20',
-                'area' => 'required|integer|min:15|max:1500',
+                'area' => 'required|integer|min:15|max:200000',
                 'city' => 'required',
                 'code' => 'required',
                 'street' => 'required',

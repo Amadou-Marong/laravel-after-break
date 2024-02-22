@@ -12,9 +12,9 @@
                     <Link class="dark:text-white font-bold text-blue-600" :href="route('listing.index')">Listings</Link>
                 </div>
                 <div v-if="user" class="items-center gap-4 flex">
-                    <div class="text-gay-500 relative text-md p-2 cursor-pointer">  
+                    <Link :href="route('notification.index')" class="text-gay-500 relative text-md p-2 cursor-pointer">  
                         🔔 <span v-if="notificationCount" class="absolute right-0 top-0 w-5 h-5 bg-red-700 text-center dark:bg-red-400 text-sm text-white border border-white rounded-full">{{ notificationCount }}</span>
-                    </div>
+                    </Link>
                     <Link class="dark:text-white hidden sm:block font-bold text-blue-600" :href="route('realtor.listing.index')">My Listings</Link>
                     <div class="text-sm hidden sm:block text-gray-500">{{user.name}}</div>
                     <Link :href="route('realtor.listing.create')" class="btn-primary hidden sm:block">+ New Listing</Link>
