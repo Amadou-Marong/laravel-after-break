@@ -1,7 +1,7 @@
 <template>
-    <h1 class="text-3xl mb-4 dark:text-gray-300">My Listings</h1>
+    <h1 class="text-3xl mb-4 dark:text-gray-300 font-medium text-center py-4">My Listings</h1>
     <section>
-        <RealtorFilters/> 
+        <!-- <RealtorFilters/>  -->
     </section>
     <section v-if="listings.data.length" class="grid grid-cols-1 lg:grid-cols-2 gap-2">
     <!-- <Box v-for="listing in listings" :key="listing.id"> -->
