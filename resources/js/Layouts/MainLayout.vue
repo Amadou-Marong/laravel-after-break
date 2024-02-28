@@ -5,15 +5,14 @@
                 
                 <div class="text-xl text-blue-600 dark:text-blue-300 font-bold text-center">
                     <Link :href="route('listing.index')">
-                        <!-- <span class="text-2xl font-bold">LOGO</span> -->
                         <img src="https://logodix.com/logo/483978.png" alt="logo" class="w-24"/>   
                     </Link>
                 </div>
                 <div class="text-lg font-medium hidden sm:block">
-                    <Link class="dark:text-white font-bold text-blue-600" :href="route('home')">Home</Link>
+                    <Link :class="{ 'font-bold border-b-4 border-blue-600': isRouteActive('home') }" class="dark:text-white text-blue-600" :href="route('home')">Home</Link>
                 </div>
                 <div class="text-lg font-medium hidden sm:block">
-                    <Link class="dark:text-white font-bold text-blue-600" :href="route('listing.index')">Listings</Link>
+                    <Link :class="{ 'font-bold border-b-4 border-blue-600': isRouteActive('listing.index') }" class="dark:text-white text-blue-600" :href="route('listing.index')">Listings</Link>
                 </div>
 
                 <div v-if="user" class="items-center gap-4 flex">
@@ -28,7 +27,8 @@
                         </svg> <span v-if="notificationCount" class="absolute right-0 top-0 w-5 h-5 bg-red-700 text-center dark:bg-red-400 text-sm text-white border border-white rounded-full">{{ notificationCount }}</span>
                     </Link> -->
 
-                    <Link class="dark:text-white hidden sm:block font-bold text-blue-600" :href="route('realtor.listing.index')">My Listings</Link>
+                    <Link class="dark:text-white hidden sm:block font-bold text-blue-600" :class="{ 'font-bold border-b-4 border-blue-600': isRouteActive('realtor.listing.index') }" :href="route('realtor.listing.index')">My Listings</Link>
+                    
                     <div class="text-sm hidden sm:block text-gray-500">{{user.name}}</div>
                     <Link :href="route('realtor.listing.create')" class="bg-blue-600 px-4 py-1.5 rounded-full text-white hidden sm:block">+ New Listing</Link>
                     <div class="hidden sm:block">
@@ -111,6 +111,10 @@ const showNavbar = ref(false);
 
 function toggleNavbar() {
     showNavbar.value = !showNavbar.value;
+}
+
+function isRouteActive(routeName) {
+    return route().current(routeName);
 }
 
 </script>
