@@ -7,7 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\Offer;   
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
 
 class OfferMade extends Notification
 {
@@ -58,4 +59,10 @@ class OfferMade extends Notification
             'bidder_name' => $this->offer->bidder->name,
         ];
     }
+    ////////////////
+    public function bidder(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'bidder_id');
+    }
+    ////////////////
 }

@@ -1,6 +1,6 @@
 <template>
    <div class="mb-4">
-      <Link :href="route('realtor.listing.index')">⬅ Return to My Listings</Link>
+      <Link :href="route('realtor.listing.index')">← Return to My Listings</Link>
    </div>
    <section class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
       <div v-if="hasOffers" class="md:col-span-7 flex flex-col gap-4">
