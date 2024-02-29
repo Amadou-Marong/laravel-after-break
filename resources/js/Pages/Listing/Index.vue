@@ -1,12 +1,18 @@
 <template>
     <Filters :filters="filters"/>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <!-- <Box v-for="listing in listings" :key="listing.id"> -->
-        <!-- <Listing v-for="listing in listings" :key="listing.id" :listing="listing"/> -->
-        <Listing v-for="listing in listings.data" :key="listing.id" :listing="listing"/>
+
+    <div v-if="listings.data.length">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <!-- <Box v-for="listing in listings" :key="listing.id"> -->
+            <!-- <Listing v-for="listing in listings" :key="listing.id" :listing="listing"/> -->
+            <Listing v-for="listing in listings.data" :key="listing.id" :listing="listing"/>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-4 dark:text-white">
+            <Pagination :links="listings.links"/>
+        </div>
     </div>
-    <div class="w-full flex justify-center mt-4 mb-4 dark:text-white">
-        <Pagination :links="listings.links"/>
+    <div v-else>
+        <EmptyState>No Listings Match Your Search</EmptyState>
     </div>
   
 </template>
@@ -14,6 +20,7 @@
 <script setup>
     import Listing from '@/Pages/Listing/Index/Components/Listing.vue';
     import Pagination from '@/Components/UI/Pagination.vue';
+    import EmptyState from '@/Components/UI/EmptyState.vue';
 
     import Filters from '@/Pages/Listing/Index/Components/Filters.vue';
 
