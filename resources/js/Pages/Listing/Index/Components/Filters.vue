@@ -2,19 +2,19 @@
     <form @submit.prevent="filter">
         <div class="flex  flex-wrap mb-8 mt-4 gap-2">
             <div class="flex flex-nowrap items-center">
-                <input v-model.number="filterForm.minPrice" type="text" placeholder="Min Price" 
+                <input v-model.number="filterForm.minPrice" @input="filter" type="text" placeholder="Min Price" 
                         class="input-filter-r"/>
-                <input v-model.number="filterForm.maxPrice" type="text" placeholder="Max Price"
+                <input v-model.number="filterForm.maxPrice" @input="filter" type="text" placeholder="Max Price"
                         class="input-filter-l"/>
             </div>
             
             <div class="flex flex-nowrap items-center">
-                <select v-model="filterForm.beds" class="input-filter-r">
+                <select v-model="filterForm.beds" @input="filter" class="input-filter-r">
                     <option :value="null">Bedrooms</option>
                     <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
                     <option>6+</option>
                 </select>
-                <select v-model="filterForm.baths" class="input-filter-l">
+                <select v-model="filterForm.baths" @input="filter" class="input-filter-l">
                     <option :value="null">Bathrooms</option>
                     <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
                     <option>6+</option>
@@ -22,9 +22,9 @@
             </div>
             
             <div class="flex flex-nowrap items-center">
-                <input v-model.number="filterForm.minArea" type="text" placeholder="Min Area"
+                <input v-model.number="filterForm.minArea" @input="filter" type="text" placeholder="Min Area"
                         class="input-filter-r"/>
-                <input v-model.number="filterForm.maxArea" type="text" placeholder="Max Area"
+                <input v-model.number="filterForm.maxArea" @input="filter" type="text" placeholder="Max Area"
                         class="input-filter-l"/>
             </div>
 
@@ -59,10 +59,6 @@ const filter = () => {
         }
    )
 }
-
-// const reset = () => {
-//     filterForm.reset()
-// }
 
 const clear = () => {
     filterForm.minPrice = null
